@@ -37,7 +37,7 @@ app.post("/login", async (req, res, next) => {
   try {
     const { username, password } = req.body;
     const user = await User.findOne({ where: { username } });
-    const isAMatch = await bcrypt.coompare(password, user.password);
+    const isAMatch = await bcrypt.compare(password, user.password);
     if (isAMatch) {
       const token = jwt.sign({ user }, process.env.JWT_SECRET);
       res.status(200).send({ message: "success", token });
