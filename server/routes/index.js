@@ -11,7 +11,6 @@ const { JWT_SECRET } = process.env;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-//TODO: Complete login and register functions, make sure that passwords are hashed and make sure all modules are installed
 
 /* Once authorization/authentication middleware is created, we need to make we add that to each route, so that each CRUD route is only accessible once the user has logged in */
 
