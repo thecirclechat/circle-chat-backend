@@ -138,3 +138,86 @@
   background: rgba(255, 255, 255, 0.6);
   filter: blur(750px);
 }
+
+/* Loging and Reg */
+
+.login {
+  /* make it 100vh */
+  height: calc(60vh - 50px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid red;
+}
+
+.loginWrapper {
+  width: 60%;
+  height: 100%;
+  border: 1px solid rgb(0, 255, 34);
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  background: rgb(55, 49, 181);
+  position: relative;
+  padding: 10px;
+}
+
+.logResButton {
+  width: 220px;
+  margin: 35px auto;
+  position: relative;
+  border: 1px solid pink;
+  border-radius: 30px;
+}
+
+.toggle-login-btn {
+  padding: 10px 30px;
+  /* cursor: pointer; */
+  position: relative;
+  text-decoration: none;
+  outline: none;
+  /* background: transparent; */
+  border: 1px solid yellow;
+}
+
+.btn-div {
+  /* width: 220px; */
+  /* margin: 35px auto; */
+  /* position: relative; */
+}
+
+/* #toggle-click-btn {
+  top: 30.5%;
+  left: 2%;
+  position: absolute;
+  width: 220px;
+  height: 8.5%;
+  background-color: pink;
+  border-radius: 30px;
+  transition: .5s;
+} */
+
+.loginBottom {
+  color: #f3f8f9;
+}
+
+.loginButton {
+  color: #f3f8f9;
+  
+}
+
+.icon-btn {
+  border:  1px solid rgb(213, 43, 31);
+  margin: 10px auto;
+  text-align: center;
+  
+}
+
+.icon {
+  font-size: 20px;
+  width: 50px;
+  height: auto;
+  border-radius: 50%;
+  padding: 5px;
+  /* margin: 0 auto; */
+}

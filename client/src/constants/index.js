@@ -1,23 +1,23 @@
 import { People01, People02, People03, facebook, instagram, linkedin, twitter, airbnb, binance, coinbase, dropbox, secure, inclusive, Flexible  } from "../assets";
 
-export const navLinks = [
-  {
-    id: "home",
-    title: "Home",
-  },
-  {
-    id: "Components",
-    title: "Components",
-  },
-  {
-    id: "Pricing",
-    title: "Pricing",
-  },
-  {
-    id: "Updates",
-    title: "Updates",
-  },
-];
+// export const navLinks = [
+//   {
+//     id: "home",
+//     title: "Home",
+//   },
+//   {
+//     id: "login",
+//     title: "Login",
+//   },
+//   {
+//     id: "Pricing",
+//     title: "Pricing",
+//   },
+//   {
+//     id: "Updates",
+//     title: "Updates",
+//   },
+// ];
 
 export const features = [
   {
