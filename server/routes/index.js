@@ -1,7 +1,7 @@
 const express = require("express");
 const { OPEN_READWRITE } = require("sqlite3");
 const app = express();
-const { User, Message } = require("../models");
+const { User, Message } = require("../models/index");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const { application } = require("express");
@@ -12,7 +12,7 @@ const { JWT_SECRET } = process.env;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-/* Once authorization/authentication middleware is created, we need to make we add that to each route, so that each CRUD route is only accessible once the user has logged in */
+
 
 //takes req.body of {username, password} and creates a new user with the hashed password
 app.post("/register", async (req, res, next) => {
