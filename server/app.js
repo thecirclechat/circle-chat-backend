@@ -8,8 +8,10 @@ const cors = require("cors");
 
 //Allow CORS requests
 app.use(cors());
+
 // logging middleware
 app.use(morgan("dev"));
+
 // parsing middleware for form input data & json
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());

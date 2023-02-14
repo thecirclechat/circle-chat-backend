@@ -1,7 +1,7 @@
 const express = require("express");
 const { OPEN_READWRITE } = require("sqlite3");
 const app = express();
-const { User, Message } = require("./db/models");
+const { User, Message } = require("../models");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const { application } = require("express");
