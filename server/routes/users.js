@@ -1,11 +1,12 @@
 const express = require("express");
-const userRouter = express.Router();
+const router = express.Router();
 const { User } = require("../models/index");
 
 // GET all users
 router.get("/", async (req, res, next) => {
   try {
-    const users = await user.findAll();
+    console.log("Hello"); // Testing to make sure that route is being reached by printing out to the console 
+    const users = await User.findAll();
     // const data = await items.json();
     res.send(users);
   } catch (error) {
@@ -47,7 +48,7 @@ router.put("/:id", async (req, res, next) => {
   }
 });
 
-//DELETE user 
+//DELETE user
 router.delete("/:id", async (req, res, next) => {
   try {
     const deleteUser = await User.destroy({
@@ -61,6 +62,4 @@ router.delete("/:id", async (req, res, next) => {
   }
 });
 
-
-
-module.exports = userRouter;
+module.exports = router;

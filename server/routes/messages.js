@@ -1,6 +1,6 @@
 const express = require("express");
-const messageRouter = express.Router();
-const { Message } = require("..models/index");
+const router = express.Router();
+const { Message } = require("../models/index");
 
 // GET Messages
 router.get("/", async (req, res, next) => {
@@ -64,4 +64,4 @@ router.delete("/:id", async (req, res, next) => {
   }
 });
 
-module.exports = messageRouter;
+module.exports = router;
