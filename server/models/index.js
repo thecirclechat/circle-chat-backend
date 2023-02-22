@@ -1,2 +1,6 @@
-//TODO: this would be for the model importing and setting up associations
+const { sequelize } = require("../../db");
+const Sequelize = require("sequelize");
+const { User } = require("./User");
+const { Message } = require("./Message");
 
+module.exports = { User, Message, sequelize, Sequelize };

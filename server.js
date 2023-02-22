@@ -1,8 +1,10 @@
+const express = require("express");
+// const app = express();
+const app = require("./server/app");
+const PORT = process.env.PORT || 3000;
 const { sequelize } = require("./server/models/index");
 
-const app = require("./server/app");
-
-const { PORT = 3000 } = process.env;
+app.use(express.static("public"));
 
 const init = async () => {
   try {
