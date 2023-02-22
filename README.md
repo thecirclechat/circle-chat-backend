@@ -7,5 +7,7 @@ Welcome to the Circle Chat! The Circle Chat is an online web-based chat applicat
 
 ## Installation
 * In order to install this locally, you can clone the repository using <code>git clone</code> (Pleas make sure you have the latest version of Node as this is required)
+* To run the dev server locally, run <code>nodemon server.js</code>
 * Once the repository has been cloned, run <code>npm install</code>
 * To view the GUI locally, go to the client folder, and run <code>npm install</code>, then run <code>npm run dev</code>
+
