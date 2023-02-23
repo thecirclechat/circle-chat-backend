@@ -1,19 +1,24 @@
-const { sequelize } = require("./server/models/index");
+const express= require('express')
+const app = express();
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
+const port = process.env.PORT || 3000;
+const router = require('./server/router')
+const messageRoute = require("./server/routes/messages")
+const userRoute = require("./server/routes/user")
 
-const app = require("./server/app");
+app.use(router)
+app.use(express.json())
 
-const { PORT = 3000 } = process.env;
+io.on('connection', (socket) => {
+  socket.on('chat message', msg => {
+    io.emit('chat message', msg);
+  });
+});
 
-const init = async () => {
-  try {
-    await sequelize.sync();
+app.use("/chat/messages", messageRoute)
+app.use("/chat/auth", userRoute)
 
-    app.listen(PORT, () => {
-      console.log(`Server listening at http://localhost:${PORT}`);
-    });
-  } catch (error) {
-    console.error("Error starting server:", error);
-  }
-};
-
-init();
+http.listen(port, () => {
+  console.log(`Socket.IO server running at http://localhost:${port}/`);
+});
