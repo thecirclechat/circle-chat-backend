@@ -1,18 +1,27 @@
-const users = [
-    {
-        
-    }
-]
-
 const messages = [
     {
-        message : "Hello"
+        chatMessage: "Hello",
+        sender: "personOne",
+        receiver: "personTwo",
+        conversationId: "1"
     },
     {
-        message : "How are you"
+        chatMessage: "How are you",
+        sender: "personTwo",
+        receiver: "personOne",
+        conversationId: "1"
     },
     {
-        message : "Great"
+        chatMessage: "I'm well",
+        sender: "personOne",
+        receiver: "personTwo",
+        conversationId: "1"
+    },
+    {
+        chatMessage: "What are you doing today",
+        sender: "personTwo",
+        receiver: "personOne",
+        conversationId: "1"
     }
 
 ]

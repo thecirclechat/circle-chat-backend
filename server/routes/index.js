@@ -1,7 +1,8 @@
 const express = require("express");
 const { OPEN_READWRITE } = require("sqlite3");
-const app = express();
-const { User, Message } = require("./db");
+const router = express.Router();
+const userRouter = require("./user");
+const messageRouter = require("./messages");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const { application } = require("express");
@@ -9,13 +10,18 @@ const SALT_COUNT = 10;
 const bcrypt = require("bcrypt");
 const { JWT_SECRET } = process.env;
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+router.use(express.json());
+router.use(express.urlencoded({ extended: true }));
 
-/* Once authorization/authentication middleware is created, we need to make we add that to each route, so that each CRUD route is only accessible once the user has logged in */
+router.use("/users", userRouter);
+router.use("/messages", messageRouter);
+
+router.get('/', function (req,res) {
+  res.sendFile(__dirname + '/home.html')
+})
 
 //takes req.body of {username, password} and creates a new user with the hashed password
-app.post("/register", async (req, res, next) => {
+router.post("/register", async (req, res, next) => {
   try {
     const { username, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, SALT_COUNT);
@@ -32,7 +38,7 @@ app.post("/register", async (req, res, next) => {
 });
 
 //takes req.body of {username, password}, finds user by username, and compares the password with the hashed version from the DB
-app.post("/login", async (req, res, next) => {
+router.post("/login", async (req, res, next) => {
   try {
     const { username, password } = req.body;
     const user = await User.findOne({ where: { username } });
@@ -48,3 +54,5 @@ app.post("/login", async (req, res, next) => {
     next(error);
   }
 });
+
+module.exports = router;
