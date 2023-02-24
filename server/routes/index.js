@@ -2,7 +2,7 @@ const express = require("express");
 const { OPEN_READWRITE } = require("sqlite3");
 const router = express.Router();
 // const userRouter = require("./user");
-// const messageRouter = require("./messages");
+const messageRouter = require("./messages");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const { application } = require("express");
@@ -12,7 +12,7 @@ const { JWT_SECRET } = process.env;
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 // router.use("/users", userRouter);
-// router.use("/messages", messageRouter);
+router.use("/messages", messageRouter);
 router.get('/', function (req,res) {
   res.sendFile(__dirname + '/home.html')
 })
