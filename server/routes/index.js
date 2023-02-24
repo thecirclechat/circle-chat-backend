@@ -1,21 +1,21 @@
 const express = require("express");
 const { OPEN_READWRITE } = require("sqlite3");
 const router = express.Router();
-const userRouter = require("./users");
-const messageRouter = require("./messages");
+// const userRouter = require("./user");
+// const messageRouter = require("./messages");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const { application } = require("express");
 const SALT_COUNT = 10;
 const bcrypt = require("bcrypt");
 const { JWT_SECRET } = process.env;
-
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
-
-router.use("/users", userRouter);
-router.use("/messages", messageRouter);
-
+// router.use("/users", userRouter);
+// router.use("/messages", messageRouter);
+router.get('/', function (req,res) {
+  res.sendFile(__dirname + '/home.html')
+})
 //takes req.body of {username, password} and creates a new user with the hashed password
 router.post("/register", async (req, res, next) => {
   try {
@@ -32,7 +32,6 @@ router.post("/register", async (req, res, next) => {
     next(error);
   }
 });
-
 //takes req.body of {username, password}, finds user by username, and compares the password with the hashed version from the DB
 router.post("/login", async (req, res, next) => {
   try {
@@ -50,5 +49,4 @@ router.post("/login", async (req, res, next) => {
     next(error);
   }
 });
-
 module.exports = router;
