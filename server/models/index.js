@@ -3,6 +3,10 @@ const Sequelize = require("sequelize");
 const { User } = require("./User");
 const { Message } = require("./Message");
 
+User.hasMany(Message); // foreignKey 'messageId'
+Message.belongsTo(User); // foreignKey 'userId'
+Message.hasMany(User); // foreignKey 'userId'
+
 module.exports = { User, Message, sequelize, Sequelize };
 // "use strict";
 // const fs = require("fs");
