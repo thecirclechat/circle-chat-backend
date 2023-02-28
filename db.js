@@ -27,7 +27,6 @@ db.serialize(function() {
     email TEXT UNIQUE, \
     email_verified INTEGER \
   )")
-  console.log("db serialize is working");
   
   db.run("CREATE TABLE IF NOT EXISTS federated_credentials ( \
     id INTEGER PRIMARY KEY, \
@@ -36,7 +35,6 @@ db.serialize(function() {
     subject TEXT NOT NULL, \
     UNIQUE (provider, subject) \
   )")
-  console.log("db.run is working");
   
   
   // create an initial user (username: alice, password: letmein)
@@ -44,8 +42,7 @@ db.serialize(function() {
   db.run('INSERT OR IGNORE INTO users (username, hashed_password, salt) VALUES (?, ?, ?)', [
     'alice',
     crypto.pbkdf2Sync('letmein', salt, 310000, 32, 'sha256'),
-    salt,
-    console.log("second db run is working")
+    salt
   ]
   );
 });

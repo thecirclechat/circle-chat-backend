@@ -48,7 +48,6 @@ router.get('/', function (req,res) {
 // });
 
 passport.use(new LocalStrategy(function verify(username, password, cb) {
-  console.log("im in the db omg");
   db.get('SELECT * FROM users WHERE username = ?', [ username ], function(err, row) {
     if (err) { return cb(err); }
     if (!row) { return cb(null, false, { message: 'Incorrect username or password.' }); }
