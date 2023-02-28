@@ -1,27 +1,22 @@
-const messages = [
+const users = [
     {
-        chatMessage: "Hello",
-        sender: "personOne",
-        receiver: "personTwo",
-        conversationId: "1"
+        userName: "Lauren",
+        password: "123"
     },
     {
-        chatMessage: "How are you",
-        sender: "personTwo",
-        receiver: "personOne",
-        conversationId: "1"
+        userName: "Krystal",
+        password: "hello"
     },
     {
-        chatMessage: "I'm well",
-        sender: "personOne",
-        receiver: "personTwo",
-        conversationId: "1"
+        userName: Mariah,
+        password: "circle"
     },
     {
-        chatMessage: "What are you doing today",
-        sender: "personTwo",
-        receiver: "personOne",
-        conversationId: "1"
+        userName: "Mamragbe",
+        password: "chat"
     }
-
 ]
+
+module.exports = {
+    users
+} 

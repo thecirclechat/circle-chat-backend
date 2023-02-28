@@ -1,23 +1,27 @@
 //dependencies
 const express = require('express')
 const router = express.Router()
-const bodyParser = require('body-parser')
-const Message = require("../models/Message")
-const User = require("../models/User")
+const { Message } = require("../models/Message")
+//const { sequelize } = require("../db")
+// const User = require()
 
 router.use(express.json());
-router.use(bodyParser.urlencoded({ extended: true }));
+router.use(express.urlencoded({ extended: true }));
+
+const userMessages = []
 
 //Get all the messages and render messages page
 router.get('/', async (req,res) => {
   res.sendFile(__dirname + '/messenger.html')
 })
 
-router.post('/', async(req,res,next)=>{
+//post all the messages to the database
+  router.post('/', async(req,res,next)=>{
     try{
-    const chatMessage = req.body;
-    const message = await Message.create(chatMessage)
-    res.send(chatMessage)
+      const newMessage = req.body;
+      const message = await Message.create({newMessage})
+      console.log(newMessage)
+    res.render( {message} )
     } catch (error) {
       next(error)
     }

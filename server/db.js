@@ -1,4 +1,4 @@
-const { Sequelize } = require("sequelize");
+const { Sequelize , Model } = require("sequelize");
 const path = require("path");
 
 const sequelize = new Sequelize({
@@ -7,4 +7,4 @@ const sequelize = new Sequelize({
   logging: false,
 });
 
-module.exports = { sequelize } ;
+module.exports = { sequelize, Sequelize } ;
