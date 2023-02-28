@@ -5,7 +5,18 @@ const app = express();
 const morgan = require("morgan");
 const path = require("path");
 const cors = require("cors");
+const indexRouter = require('./routes/index');
 
+
+
+// added sessions
+var logger = require('morgan');
+var passport = require('passport');
+var session = require('express-session');
+
+var SQLiteStore = require('connect-sqlite3')(session);
+// 
+// const authRouter = require('./routes/auth'); 
 //Allow CORS requests
 app.use(cors());
 
@@ -19,6 +30,18 @@ app.use(express.json());
 // serve up static files (e.g. html and css files)
 app.use(express.static(path.join(__dirname, "../dist")));
 
+
+// added for establishing sessions
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false,
+  store: new SQLiteStore({ db: 'sessions.db', dir: './var/db' })
+}));
+app.use(passport.authenticate('session'));
+// 
+
 //testing a get route to api to ensure get will work with middleware when loading up localhost:3000
 app.get("/", async (req, res) => {
   res.send("hello world");
@@ -26,6 +49,8 @@ app.get("/", async (req, res) => {
 
 // api router
 app.use("/api", require("./routes/index"));
+
+app.use('/', indexRouter);
 
 //testing a get route to api to ensure get will work with middleware when loading up localhost:3000/api
 app.get("/api", async (req, res) => {
