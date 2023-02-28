@@ -11,7 +11,7 @@ const db = new sqlite3.Database('./var/db/circleChat.db');
 
 const sequelize = new Sequelize({
   dialect: "sqlite",
-  storage: path.join(__dirname, "db.sqlite3"),
+  storage: path.join(__dirname, "db.sqlite"),
   logging: false,
 });
 
@@ -26,7 +26,8 @@ db.serialize(function() {
     name TEXT, \
     email TEXT UNIQUE, \
     email_verified INTEGER \
-  )");
+  )")
+  console.log("db serialize is working");
   
   db.run("CREATE TABLE IF NOT EXISTS federated_credentials ( \
     id INTEGER PRIMARY KEY, \
@@ -34,7 +35,8 @@ db.serialize(function() {
     provider TEXT NOT NULL, \
     subject TEXT NOT NULL, \
     UNIQUE (provider, subject) \
-  )");
+  )")
+  console.log("db.run is working");
   
   
   // create an initial user (username: alice, password: letmein)
@@ -42,7 +44,8 @@ db.serialize(function() {
   db.run('INSERT OR IGNORE INTO users (username, hashed_password, salt) VALUES (?, ?, ?)', [
     'alice',
     crypto.pbkdf2Sync('letmein', salt, 310000, 32, 'sha256'),
-    salt
+    salt,
+    console.log("second db run is working")
   ]
   );
 });

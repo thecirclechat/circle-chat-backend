@@ -15,7 +15,7 @@ const { JWT_SECRET } = process.env;
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const crypto = require('crypto');
-const db = require("../../db");
+const {db} = require("../../db");
 // end
 
 router.use(express.json());
@@ -84,8 +84,9 @@ router.get('/login', function(req, res, next) {
 
 router.post('/login/password', passport.authenticate('local', {
   successRedirect: '/',
-  failureRedirect: '/login'
-}));
+  failureRedirect: '/login',
+  
+},console.log("password post route")));
 
 router.post('/logout', function(req, res, next) {
   req.logout(function(err) {
