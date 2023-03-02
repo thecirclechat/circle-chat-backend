@@ -1,20 +1,25 @@
 // load environment variables from .env or elsewhere
 require("dotenv").config();
+const createError = require('http-errors');
 const express = require("express");
-const app = express();
-const morgan = require("morgan");
 const path = require("path");
+const cookieParser = require("cookie-parser");
+const morgan = require("morgan");
 const cors = require("cors");
-const indexRouter = require('./routes/index');
-
-
 
 // added sessions
-var logger = require('morgan');
-var passport = require('passport');
-var session = require('express-session');
+const logger = require('morgan');
+const passport = require('passport');
+const session = require('express-session');
 
-var SQLiteStore = require('connect-sqlite3')(session);
+const SQLiteStore = require('connect-sqlite3')(session);
+
+const indexRouter = require('./routes/index');
+const userRouter =  require('./routes/users')
+
+const app = express();
+
+app.locals.pluralize = require('pluralize');
 // 
 // const authRouter = require('./routes/auth'); 
 //Allow CORS requests
@@ -22,14 +27,31 @@ app.use(cors());
 
 // logging middleware
 app.use(morgan("dev"));
+// 
+// app.use(session({secret : config.secretKey}));
 
+// app.use(passport.initialize());
+
+// app.use(passport.session());
+// 
 // parsing middleware for form input data & json
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+// app.use(express.urlencoded({ extended: false }));
+// app.use(express.json());
 
 // serve up static files (e.g. html and css files)
 app.use(express.static(path.join(__dirname, "../dist")));
 
+// 
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+// 
+
+
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
 // added for establishing sessions
 app.use(express.static(path.join(__dirname, 'public')));
@@ -51,6 +73,7 @@ app.get("/", async (req, res) => {
 app.use("/api", require("./routes/index"));
 
 app.use('/', indexRouter);
+app.use('/', userRouter)
 
 //testing a get route to api to ensure get will work with middleware when loading up localhost:3000/api
 app.get("/api", async (req, res) => {
