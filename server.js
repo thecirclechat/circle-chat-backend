@@ -55,14 +55,14 @@ http.listen(port, () => {
 // added for passport
 // https://stackoverflow.com/questions/38886066/how-to-use-express-session
 // For Passport 
-app.use(session({
-  secret: 'keyboard cat',
-  resave: true, 
-  saveUninitialized:true
-  })); // session secret 
-app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
-// 
+// app.use(session({
+//   secret: 'keyboard cat',
+//   resave: true, 
+//   saveUninitialized: true
+//   })); // session secret 
+// app.use(passport.initialize());
+// app.use(passport.session()); // persistent login sessions
+// // 
 
 // making our models work
 models.sequelize.sync().then(function() {
