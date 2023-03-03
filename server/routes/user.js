@@ -1,4 +1,47 @@
 const express = require("express");
+const { User } = require("../models/User");
+const { sequelize } = require('../db');
+const router = express.Router();
+const seedData = require('../seedData')
+
+router.use(express.json());
+router.use(express.urlencoded({ extended: true }));
+
+router.get('/seed', async (req, res) => {
+  try {
+    // Sync the User model with the database
+    await sequelize.sync({ force: true });
+
+    // Create new User instances from the seed data and save them to the database
+    await Promise.all(seedData.users.map(async (userData) => {
+      await User.create(userData);
+    }));
+
+    res.send('Database seeded successfully!');
+  } catch (error) {
+    console.error(error); 
+    res.status(500).send('Error seeding database'); 
+  }
+});
+
+// Get all the users and render users page
+router.get('/users', async (req, res) => {
+  try {
+    const users = await User.findAll();
+    console.log(users);
+    res.json(users)
+  } catch (error) {
+    console.error(error); 
+    res.status(500).send('Error retrieving users from database'); 
+  }
+});
+
+router.get('/', (req,res) => {
+  res.sendFile(__dirname + '/user.html')
+})
+
+module.exports = router;
+/*const express = require("express");
 const { OPEN_READWRITE } = require("sqlite3");
 //const { User, Message } = require("./db");
 const cors = require("cors");
@@ -19,7 +62,7 @@ router.get("/", async (req, res, next) => {
     
   } catch (error) {
     next(error);
-  }*/
+  }
   res.sendFile(__dirname + '/home.html')
 });
 
@@ -72,3 +115,4 @@ router.delete("/:id", async (req, res, next) => {
 });
 
 module.exports = router;
+*/
