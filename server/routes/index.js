@@ -36,7 +36,6 @@ router.post("/register", async (req, res, next) => {
     next(error);
   }
 });
-
 //takes req.body of {username, password}, finds user by username, and compares the password with the hashed version from the DB
 router.post("/login", async (req, res, next) => {
   try {
