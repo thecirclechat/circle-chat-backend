@@ -1,6 +1,6 @@
 // load environment variables from .env or elsewhere
 require("dotenv").config();
-const createError = require('http-errors');
+const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
@@ -8,61 +8,51 @@ const morgan = require("morgan");
 const cors = require("cors");
 
 // added sessions
-const logger = require('morgan');
-const passport = require('passport');
-const session = require('express-session');
+const logger = require("morgan");
+const passport = require("passport");
+const session = require("express-session");
 
-const SQLiteStore = require('connect-sqlite3')(session);
+const SQLiteStore = require("connect-sqlite3")(session);
 
-const indexRouter = require('./routes/index');
-const userRouter =  require('./routes/users')
+const indexRouter = require("./routes/index");
+const userRouter = require("./routes/users");
 
 const app = express();
 
-app.locals.pluralize = require('pluralize');
-// 
-// const authRouter = require('./routes/auth'); 
+app.locals.pluralize = require("pluralize");
+
 //Allow CORS requests
 app.use(cors());
 
 // logging middleware
 app.use(morgan("dev"));
-// 
-// app.use(session({secret : config.secretKey}));
-
-// app.use(passport.initialize());
-
-// app.use(passport.session());
-// 
-// parsing middleware for form input data & json
-// app.use(express.urlencoded({ extended: false }));
-// app.use(express.json());
 
 // serve up static files (e.g. html and css files)
 app.use(express.static(path.join(__dirname, "../dist")));
 
-// 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-// 
+//
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+//
 
-
-app.use(logger('dev'));
+app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
 // added for establishing sessions
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: false,
-  store: new SQLiteStore({ db: 'sessions.db', dir: './var/db' })
-}));
-app.use(passport.authenticate('session'));
-// 
+app.use(express.static(path.join(__dirname, "public")));
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: false,
+    store: new SQLiteStore({ db: "sessions.db", dir: "./var/db" }),
+  })
+);
+app.use(passport.authenticate("session"));
+//
 
 //testing a get route to api to ensure get will work with middleware when loading up localhost:3000
 app.get("/", async (req, res) => {
@@ -72,8 +62,8 @@ app.get("/", async (req, res) => {
 // api router
 app.use("/api", require("./routes/index"));
 
-app.use('/', indexRouter);
-app.use('/', userRouter)
+app.use("/", indexRouter);
+app.use("/", userRouter);
 
 //testing a get route to api to ensure get will work with middleware when loading up localhost:3000/api
 app.get("/api", async (req, res) => {

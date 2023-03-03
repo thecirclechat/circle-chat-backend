@@ -5,9 +5,7 @@ const { User } = require("../models/index");
 // GET all users
 router.get("/", async (req, res, next) => {
   try {
-    console.log("Hello"); // Testing to make sure that route is being reached by printing out to the console 
     const users = await User.findAll();
-    // const data = await items.json();
     res.send(users);
   } catch (error) {
     next(error);
