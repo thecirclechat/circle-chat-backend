@@ -47,7 +47,7 @@
           align-items: center;
           justify-content: center;
           min-height: 100vh;
-          color: #efefef;
+          color: #000000;
           /*
           font-family: 'Jost', sans-serif;
           background-image: url("/assets/wallpaper4.jpg");
@@ -56,9 +56,9 @@
           */
         }
 
-        ::selection{
+    ::selection{
     background-color: var(--primary-color);
-    color: #fff;
+    color: #000000;
 }
 
 body.dark{
@@ -71,7 +71,7 @@ body.dark{
 }
 
 
-        /* ===== Sidebar ===== */
+/* ===== Sidebar ===== */
  .sidebar{
     position: fixed;
     top: 0;
@@ -81,7 +81,7 @@ body.dark{
     padding: 10px 14px;
     background: var(--sidebar-color);
     transition: var(--tran-05);
-    z-index: 100;  
+    /*z-index: 100;  */
 }
 .sidebar.close{
     width: 88px;
@@ -141,7 +141,7 @@ body.dark{
     padding: 10px 14px;
     background: var(--sidebar-color);
     transition: var(--tran-05);
-    z-index: 100;  
+    z-index: 100;
 }
 .sidebar.close{
     width: 88px;
@@ -401,7 +401,7 @@ body.dark .home .text{
           display: flex;
           width: 100%;
 	        min-height: 100vh;
-          background: #1D1E24;;
+          
           /*
           background: rgba(44, 47, 72, 0.5);
           background: linear-gradient(
@@ -420,7 +420,7 @@ body.dark .home .text{
 
       #messages-list{
         /*background: rgba(29, 32, 62, 0.3);*/
-        background: #20232A;
+        
         color: #efefef;
         /*border-right: 1px solid black;*/
         width: fit-content;
@@ -428,7 +428,8 @@ body.dark .home .text{
       }
 
       #messages {
-        background: #1D203E;
+        margin-top: 5%;
+        z-index: 100;
       }
 
       #form {padding: 0.25rem; position: fixed; bottom: 30px; left: 350px; right: 0; display: flex; height: 74px; width: 967px;}
@@ -438,18 +439,16 @@ body.dark .home .text{
 
       #messages { list-style-type: none; margin: 0; padding: 0; }
       #messages > li { padding: 0.5rem 1rem; }
-      #messages > li:nth-child(odd) { background: #000000; }
+      /*#messages > li:nth-child(odd);*/
     </style>
 
 
 
   </head>
   
-  <body>
-  </head>
-
-  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-  <script src="https://kit.fontawesome.com/a0f565864b.js" crossorigin="anonymous"></script>
+  
+  
+ 
   <body>
 
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
@@ -550,65 +549,7 @@ body.dark .home .text{
       </nav>
   
       <section class="home">
-          <div class="text">Messages</div>
-
-          <div class="left">
-            <div class="users">
-                <ul class="people" data-searchable>
-                    <li class="person" data-chat="person1">
-                        <div class="user-status online"></div>
-                        <img src="./assets/img/pro_2.png" alt="">
-                        <span class="name">kevin minion</span>
-                        <span class="time">Just now</span>
-                        <span class="preview">Are you there bro?</span>
-                    </li>
-                    <li class="person" data-chat="person2">
-                        <div class="user-status online"></div>
-                        <img src="./assets/img/pro_5.png" alt="">
-                        <span class="name">bo jackson</span>
-                        <!-- <div class="verified-badge"></div> -->
-                        <span class="time">3:52 AM</span>
-                        <span class="preview">It disappear all by itself? Dude you lying</span>
-                    </li>
-                    <li class="person" data-chat="person3">
-                        <div class="user-status offline"></div>
-                        <img src="./assets/img/pro_6.png" alt="">
-                        <span class="name">michael jordan</span>
-                        <!-- <div class="verified-badge"></div> -->
-                        <span class="time">7:08 PM</span>
-                        <span class="preview">Yo bro, you won't believe what amma bout
-                     to tellyou</span>
-                    </li>
-                    <li class="person" data-chat="person4">
-                        <div class="user-status online"></div>
-                        <img src="./assets/img/pro_7.png" alt="">
-                        <span class="name">jane doe</span>
-                        <!-- <div class="verified-badge"></div> -->
-                        <span class="time">2:09 PM</span>
-                        <span class="preview">This is that, you know the drill</span>
-
-                    </li>
-                    <li class="person" data-chat="person5">
-                        <div class="user-status online"></div>
-                        <img src="./assets/img/pro_4.png" alt="">
-                        <span class="name">scrat</span>
-                        <span class="time">Yesterday</span>
-                        <span class="preview">Where is my nut?</span>
-                    </li>
-                    <li class="person" data-chat="person4">
-                        <div class="user-status online"></div>
-                        <img src="./assets/img/pro_7.png" alt="">
-                        <span class="name">jane doe</span>
-                        <!-- <div class="verified-badge"></div> -->
-                        <span class="time">2:09 PM</span>
-                        <span class="preview">This is that, you know the drill</span>
-
-                    </li>
-                </ul>
-              </div>
-            </div>
-        </div>
-    </div>
+          <div class="text"></div>
       </section>
 
 
